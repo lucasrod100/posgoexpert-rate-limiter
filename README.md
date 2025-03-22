@@ -33,9 +33,11 @@ REDIS_ADDR=localhost:6322
 
 ## Iniciando o servidor:
 ```
-docker compose up -d
+docker-compose up -d
 ```
-
+A aplicação estará disponível na porta 8080
 ## Fazendo uma requisição:
-- **Por IP:** curl -X GET http://localhost:8080
-- **Por Token:** curl -X GET http://localhost:8080 -H "API_KEY: abc123"
+```
+Por IP: curl -X GET http://localhost:8080
+Por Token: curl -X GET http://localhost:8080 -H "API_KEY: abc123"
+```
