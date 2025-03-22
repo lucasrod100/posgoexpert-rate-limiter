@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - rate-limiter-network
+  app:
+    build: .
+    depends_on:
+      - redis
+    command: go run main.go
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    volumes:
+      - .:/app
+    working_dir: /app/cmd
+    ports:
+      - "8080:8080"
+    networks:
+      - rate-limiter-network      
+
+networks:
+  rate-limiter-network:
+    driver: bridge
